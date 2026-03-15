@@ -306,7 +306,12 @@ app.get('/privacy-policy', (req, res) => {
 });
 
 // Serve frontend static files (production build)
-const frontendDistPath = path.join(__dirname, '../frontend/dist');
+const frontendDistCandidates = [
+  path.join(__dirname, '../frontend/dist'),
+  path.join(__dirname, 'frontend-dist')
+];
+const frontendDistPath = frontendDistCandidates.find((candidate) => fs.existsSync(candidate)) || frontendDistCandidates[0];
+console.log(`Frontend dist path: ${frontendDistPath}`);
 app.use('/assets', express.static(path.join(frontendDistPath, 'assets'), {
   maxAge: '1y', // Cache assets for 1 year
   etag: true,
@@ -581,7 +586,7 @@ app.get('*', (req, res, next) => {
   }
   
   // Serve frontend index.html for all other routes
-  const indexPath = path.join(__dirname, '../frontend/dist/index.html');
+  const indexPath = path.join(frontendDistPath, 'index.html');
   res.sendFile(indexPath, (err) => {
     if (err) {
       console.error('Error serving frontend index.html:', err);

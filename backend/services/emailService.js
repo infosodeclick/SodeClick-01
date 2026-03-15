@@ -81,7 +81,7 @@ const initializeTransporter = () => {
   const currentEmailUser = (process.env.EMAIL_USER || EMAIL_USER || '').trim().replace(/^["']|["']$/g, '');
   const currentEmailPass = (process.env.EMAIL_PASS || EMAIL_PASS || '').trim().replace(/^["']|["']$/g, '');
   const currentEmailHost = (process.env.EMAIL_HOST || EMAIL_HOST || 'smtp.gmail.com').trim().replace(/^["']|["']$/g, '');
-  const currentEmailPort = parseInt((process.env.EMAIL_PORT || EMAIL_PORT || '587').trim().replace(/^["']|["']$/g, '')) || 587;
+  const currentEmailPort = parseInt(String(process.env.EMAIL_PORT || EMAIL_PORT || '587').trim().replace(/^["']|["']$/g, '')) || 587;
   const currentEmailFrom = (process.env.EMAIL_FROM || EMAIL_FROM || currentEmailUser || '').trim().replace(/^["']|["']$/g, '');
   
   if (currentEmailUser && currentEmailPass) {
@@ -151,7 +151,7 @@ const sendVerificationEmail = async (email, code, name = 'ผู้ใช้', r
   const currentEmailUser = (process.env.EMAIL_USER || EMAIL_USER || '').trim().replace(/^["']|["']$/g, '');
   const currentEmailPass = (process.env.EMAIL_PASS || EMAIL_PASS || '').trim().replace(/^["']|["']$/g, '');
   const currentEmailHost = (process.env.EMAIL_HOST || EMAIL_HOST || 'smtp.gmail.com').trim().replace(/^["']|["']$/g, '');
-  const currentEmailPort = parseInt((process.env.EMAIL_PORT || EMAIL_PORT || '587').trim().replace(/^["']|["']$/g, '')) || 587;
+  const currentEmailPort = parseInt(String(process.env.EMAIL_PORT || EMAIL_PORT || '587').trim().replace(/^["']|["']$/g, '')) || 587;
   const currentEmailFrom = (process.env.EMAIL_FROM || EMAIL_FROM || currentEmailUser || '').trim().replace(/^["']|["']$/g, '');
   
   console.log('📧 [sendVerificationEmail] Preparing to send email...');
@@ -381,7 +381,7 @@ const sendWelcomeEmail = async (email, name = 'ผู้ใช้') => {
   const currentEmailUser = (process.env.EMAIL_USER || EMAIL_USER || '').trim().replace(/^["']|["']$/g, '');
   const currentEmailPass = (process.env.EMAIL_PASS || EMAIL_PASS || '').trim().replace(/^["']|["']$/g, '');
   const currentEmailHost = (process.env.EMAIL_HOST || EMAIL_HOST || 'smtp.gmail.com').trim().replace(/^["']|["']$/g, '');
-  const currentEmailPort = parseInt((process.env.EMAIL_PORT || EMAIL_PORT || '587').trim().replace(/^["']|["']$/g, '')) || 587;
+  const currentEmailPort = parseInt(String(process.env.EMAIL_PORT || EMAIL_PORT || '587').trim().replace(/^["']|["']$/g, '')) || 587;
   const currentEmailFrom = (process.env.EMAIL_FROM || EMAIL_FROM || currentEmailUser || '').trim().replace(/^["']|["']$/g, '');
 
   // Create HTML and text content
@@ -571,7 +571,7 @@ const sendPasswordResetEmail = async (email, resetToken, name = 'ผู้ใช
   const currentEmailUser = (process.env.EMAIL_USER || EMAIL_USER || '').trim().replace(/^["']|["']$/g, '');
   const currentEmailPass = (process.env.EMAIL_PASS || EMAIL_PASS || '').trim().replace(/^["']|["']$/g, '');
   const currentEmailHost = (process.env.EMAIL_HOST || EMAIL_HOST || 'smtp.gmail.com').trim().replace(/^["']|["']$/g, '');
-  const currentEmailPort = parseInt((process.env.EMAIL_PORT || EMAIL_PORT || '587').trim().replace(/^["']|["']$/g, '')) || 587;
+  const currentEmailPort = parseInt(String(process.env.EMAIL_PORT || EMAIL_PORT || '587').trim().replace(/^["']|["']$/g, '')) || 587;
   const currentEmailFrom = (process.env.EMAIL_FROM || EMAIL_FROM || currentEmailUser || '').trim().replace(/^["']|["']$/g, '');
   
   console.log('🔍 [sendPasswordResetEmail] Checking email configuration...');
