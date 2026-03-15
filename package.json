@@ -1,0 +1,61 @@
+{
+  "name": "love-project",
+  "version": "1.0.0",
+  "description": "Full-stack project with React + Vite + TailwindCSS + Shadcn/UI frontend and Express.js + MongoDB backend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node scripts/dev-cross-platform.js",
+    "demo:web": "concurrently -n backend,frontend -c blue,green \"npm run dev:backend:local\" \"npm run dev:frontend:local\"",
+    "dev:backend:local": "cd backend && npm run dev",
+    "dev:frontend:local": "cd frontend && npm run dev",
+    "demo:backend": "cd backend && npm run dev",
+    "demo:frontend": "cd frontend && npm run dev",
+    "android:add": "cd frontend && npm run cap:add:android",
+    "android:sync": "cd frontend && npm run cap:sync",
+    "android:open": "cd frontend && npm run cap:open:android",
+    "dev:macos": "node scripts/dev-macos.js",
+    "dev:windows": "node scripts/dev-windows.js",
+    "dev:windows-simple": "node scripts/dev-windows-simple.js",
+    "dev:windows-fixed": "node scripts/dev-windows-fixed.js",
+    "dev:fix-shx": "node scripts/dev-fix-shx.js",
+    "dev:simple": "node scripts/dev-simple.js",
+    "dev:smart": "node scripts/dev-smart.js",
+    "test:macos": "node scripts/test-macos.js",
+    "fix-permissions": "node scripts/fix-macos-permissions.js",
+    "fix-rollup": "node scripts/fix-rollup.js",
+    "copy-env": "node scripts/copy-env.js",
+    "dev:concurrent": "node node_modules/concurrently/dist/bin/concurrently.js -n backend,frontend -c blue,green \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:start": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "cd frontend && npm start",
+    "start:backend": "cd backend && npm start",
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "build": "cd frontend && npm run build",
+    "build:production": "cd frontend && npm run build && echo 'Frontend build completed'",
+    "start:production": "npm run build:production && cd backend && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "vite",
+    "tailwindcss",
+    "shadcn",
+    "express",
+    "mongodb",
+    "fullstack"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^10.0.0",
+    "lightningcss": "^1.30.2",
+    "shx": "^0.4.0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "node-media-server": "^4.0.21"
+  }
+}

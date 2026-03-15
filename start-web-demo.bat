@@ -1,0 +1,3 @@
+@echo off
+echo Starting SodeClick web demo (backend + frontend)...
+call npm run demo:web

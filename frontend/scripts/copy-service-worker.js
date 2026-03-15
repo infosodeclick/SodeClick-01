@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+/**
+ * Script สำหรับ copy Service Worker ไปยัง public folder ใน development
+ * เพื่อให้ Vite สามารถให้บริการไฟล์ด้วย MIME type ที่ถูกต้อง
+ */
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const sourceFile = path.join(__dirname, '../../public/sw-auto-refresh.js');
+const targetFile = path.join(__dirname, '../../public/sw-auto-refresh-dev.js');
+
+// อ่านไฟล์ต้นฉบับ
+try {
+  // ตรวจสอบว่าไฟล์ต้นฉบับมีหรือไม่
+  if (!fs.existsSync(sourceFile)) {
+    console.log('⚠️  Service Worker source file not found, skipping copy (optional feature)');
+    console.log('📁 Expected source:', sourceFile);
+    process.exit(0); // Exit gracefully
+  }
+
+  const content = fs.readFileSync(sourceFile, 'utf8');
+
+  // ปรับแต่งเนื้อหาให้เหมาะกับ development
+  const devContent = content.replace(
+    "const API_BASE_URL = 'https://sodeclick-backend-production.up.railway.app'; // Production API",
+    "const API_BASE_URL = 'http://localhost:5000'; // Development API"
+  );
+
+  // เขียนไฟล์สำหรับ development
+  fs.writeFileSync(targetFile, devContent);
+
+  console.log('✅ Service Worker copied for development mode');
+  console.log('📁 Source:', sourceFile);
+  console.log('📁 Target:', targetFile);
+
+} catch (error) {
+  console.error('❌ Error copying Service Worker:', error.message);
+  process.exit(1);
+}
